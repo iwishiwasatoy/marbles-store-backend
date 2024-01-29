@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import Marble, { type MarbleType } from './marble'
+import { type MarbleType } from './marble'
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 
@@ -9,23 +9,25 @@ enum AccountType {
 }
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-type CollectorType = {
+export type CollectorType = {
   first_name: string
   last_name: string
-  marbles_collection: MarbleType[]
+  username: string
+  marbles_collection?: MarbleType[]
   account_type: AccountType
 }
 
 const CollectorSchema = new Schema<CollectorType>({
   first_name: { type: String, required: true },
   last_name: { type: String, required: false },
-  marbles_collection: { type: [Marble] },
+  username: { type: String, required: true },
+  marbles_collection: [{ type: Schema.Types.ObjectId, ref: 'Marble' }],
   account_type: {
     type: String,
-    required: true,
+    required: false,
     enum: AccountType,
     default: AccountType.COMMON
   }
-})
+}, { collection: 'collectors' })
 
 export default mongoose.model<CollectorType>('Collector', CollectorSchema)

@@ -18,6 +18,6 @@ export type MarbleType = {
 const MarbleSchema = new Schema<MarbleType>({
   name: { type: String, required: true },
   color: { type: String, required: true }
-})
+}, { collection: 'marbles' })
 
 export default mongoose.model<MarbleType>('Marble', MarbleSchema)
