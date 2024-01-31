@@ -4,8 +4,8 @@ import { type MarbleType } from './marble'
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 
 enum AccountType {
-  COMMON = 'Common',
-  PREMIUM = 'Premium'
+  COMMON = 'common',
+  PREMIUM = 'premium'
 }
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
